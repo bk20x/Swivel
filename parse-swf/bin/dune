@@ -1,0 +1,5 @@
+(executable
+ (public_name parse-swf)
+ (name main)
+ (libraries parse_swf base eio stdint)
+ (promote (until-clean)))

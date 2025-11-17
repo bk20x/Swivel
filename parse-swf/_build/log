@@ -1,0 +1,16 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /home/bk20x/.cache/dune/db
+# Workspace root: /home/bk20x/Desktop/parse-swf
+# Auto-detected concurrency: 24
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /home/bk20x/.opam/default/bin/ocamlc.opt -config > /tmp/dune_bb0849_output
