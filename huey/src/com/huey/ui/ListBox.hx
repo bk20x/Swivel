@@ -21,7 +21,7 @@ package com.huey.ui;
 import com.huey.events.Dispatcher;
 
 class ListBox extends Container {
-	@bindable public var selectedItem(get_selectedItem, set_selectedItem) : Dynamic;
+	@bindable public var selectedItem(get, set) : Dynamic;
 	private function get_selectedItem() : Dynamic {
 		return if(selectedIndex >= 0) _items[selectedIndex].data else null;
 	}
@@ -40,7 +40,7 @@ class ListBox extends Container {
 	
 	public var onChange(default, null) : Dispatcher<UIEvent>;
 	
-	@bindable public var selectedIndex(default, set_selectedIndex) : Int = -1;
+	@bindable public var selectedIndex(get, set) : Int = -1;
 	private function set_selectedIndex(v : Int) : Int {
 		_selectedRect.visible = false;
 		
@@ -120,6 +120,7 @@ class ListBox extends Container {
 		if(_scrollButton.y > 55) { _scrollButton.y = 55; updateScrollRect(); }
 	}
 	
+
 	public function addItem(item : Dynamic, ?label : String) : Void {
 		var comp = new Container();
 		var labelComp = new Label();
@@ -136,7 +137,12 @@ class ListBox extends Container {
 		comp.add(labelComp);
 		untyped comp._implComponent.buttonMode = true;
 		untyped comp._implComponent.mouseChildren = false;
-		comp.onClick.add( function(i) {return function(e) selectedIndex = i;}(_items.length) );
+		var idx = _items.length;
+		comp.onClick.add(
+			function(e){
+				selectedIndex = idx;
+			}
+		);
 		var str = Std.string(_items.length + 1);
 		if(str.length < 2) str = "0" + str;
 		labelComp = new Label(str);

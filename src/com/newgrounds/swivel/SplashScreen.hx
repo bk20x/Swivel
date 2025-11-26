@@ -52,7 +52,7 @@ class SplashScreen extends Component {
 			default:				null;
 		}
 		if (url != null) {
-			e.target.addEventListener(MouseEvent.CLICK, function(e) Lib.getURL(new URLRequest(url)) );
+			e.target.addEventListener(MouseEvent.CLICK, function(e) Lib.getURL(new URLRequest(url)));
 		}
 	}
 	

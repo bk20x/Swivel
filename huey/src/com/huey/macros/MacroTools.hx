@@ -130,8 +130,6 @@ class MacroTools
 				
 				case EDisplay(e, isCall):
 					mapExpr(e, f);
-					
-				case EDisplayNew(t):
 				
 				case EField(e, field):
 					mapExpr(e, f);

@@ -148,11 +148,16 @@ class Binding {
 					}
 
 					var setter = _cl.getField('set_${field.name}'); // MIKNEW
+					if (setter == null){
+						trace("No setter for field: " + field.name); // trace just in case this causes an issue later, but its prob fine to return - bk20x;
+						return;
+					}
 					switch(setter.kind) {
-						case FFun(f):
-							com.huey.macros.MacroTools.mapExpr(f.expr, injectNotify);
+					    case FFun(f):
+						    com.huey.macros.MacroTools.mapExpr(f.expr, injectNotify);
 						default: Context.error("Unexpected error", pos);
 					}
+					
 				}
 
 			default:
