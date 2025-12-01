@@ -31,17 +31,17 @@ class AbcUtils {
 	private static function lookup<T>( arr : Array<T>, n : T ) : Index<T> {
 		for( i in 0...arr.length )
 			if( arr[i] == n )
-				return Idx(i + 1);
+				return new Index(i + 1);
 		arr.push(n);
-		return Idx(arr.length);
+		return new Index(arr.length);
 	}
 	
-	private static function elookup<T>( arr : Array<T>, n : T ) : Index<T> {
+	private static function enumLookup<T>( arr : Array<T>, n : T ) : Index<T> {
 		for( i in 0...arr.length )
-			if( Type.enumEq(arr[i],n) )
-				return Idx(i + 1);
+			if( Type.enumEq(arr[i], n) )
+				return new Index(i + 1);
 		arr.push(n);
-		return Idx(arr.length);
+		return new Index(arr.length);
 	}
 
 	inline public static function opInt(abc : ABCData, v) : OpCode {
@@ -50,23 +50,23 @@ class AbcUtils {
 			else OIntRef( int(abc, v) );
 	}
 	
-	public static function int(abc : ABCData, v)								return lookup(abc.ints, v);
-	public static function uint(abc : ABCData, v)								return lookup(abc.uints, v);
+	public static function int(abc : ABCData, v : haxe.Int32)					return lookup(abc.ints, v);
+	public static function uint(abc : ABCData, v : haxe.Int32)					return lookup(abc.uints, v);
 	public static function float(abc : ABCData, v : Float)						return lookup(abc.floats, v);
 	public static function string(abc : ABCData, v : String)					return lookup(abc.strings, v);
 	public static function pushString(abc : ABCData, v : String) : Index<String> {
 		abc.strings.push(v);
-		return Idx(abc.strings.length);
+		return new Index(abc.strings.length);
 	}
-	public static function name(abc : ABCData, v : Name)						return elookup(abc.names, v);
+	public static function name(abc : ABCData, v : Name)						return enumLookup(abc.names, v);
 	inline public static function pushName(abc : ABCData, v : Name) : IName {
 		abc.names.push(v);
-		return Idx(abc.names.length);
+		return new Index(abc.names.length);
 	}
-	public static function publicName(abc : ABCData, v : String)				return elookup(abc.names, NName( string(abc, v), namespace(abc, NPublic(string(abc, ""))) ) );
-	public static function namespace(abc : ABCData, v : Namespace)				return elookup(abc.namespaces, v);
-	public static function namespaceSet(abc : ABCData, v : NamespaceSet)		return elookup(abc.nssets, v);
-	public static function methodType(abc : ABCData, v : MethodType)			{ abc.methodTypes.push(v); return Idx(abc.methodTypes.length - 1); }
+	public static function publicName(abc : ABCData, v : String)				return enumLookup(abc.names, NName( string(abc, v), namespace(abc, NPublic(string(abc, ""))) ) );
+	public static function namespace(abc : ABCData, v : Namespace)				return enumLookup(abc.namespaces, v);
+	public static function namespaceSet(abc : ABCData, v : NamespaceSet)		return enumLookup(abc.nssets, v);
+	public static function methodType(abc : ABCData, v : MethodType)			{ abc.methodTypes.push(v); return new Index(abc.methodTypes.length - 1); }
 	public static function type(abc : ABCData, path) : Null<Index<Name>> {
 		if( path == "*" )
 			return null;
@@ -80,15 +80,12 @@ class AbcUtils {
 	}
 	
 	public static function replaceName(abc : ABCData, i : IName, name : Name) {
-		var _i = switch(i) {
-			case Idx(i): i-1;
-		};
-		
+		var _i = i.asInt() - 1;
 		abc.names[_i] = name;
 	}
 	
-	public static function getInt(abc : ABCData, i)								return abc.get(abc.ints, i);
-	public static function getUInt(abc : ABCData, i)							return abc.get(abc.uints, i);
+	public static function getInt(abc : ABCData, i : Index<haxe.Int32>)			return abc.get(abc.ints, i);
+	public static function getUInt(abc : ABCData, i : Index<haxe.Int32>)		return abc.get(abc.uints, i);
 	public static function getFloat(abc : ABCData, i : Index<Float>)			return abc.get(abc.floats, i);
 	public static function getString(abc : ABCData, i : Index<String>)			return abc.get(abc.strings, i);
 	public static function getClass(abc : ABCData, i : Index<ClassDef>)			return abc.get(abc.classes, i);
@@ -96,16 +93,16 @@ class AbcUtils {
 	public static function getNamespace(abc : ABCData, i : Index<Namespace>)	return abc.get(abc.namespaces, i);
 	public static function getNamespaceSet(abc : ABCData, i : Index<NamespaceSet>) return abc.get(abc.nssets, i);
 	public static function getMethodType(abc : ABCData, i : Index<MethodType>)	{
-		return switch( i ) { case Idx(n): abc.methodTypes[n]; };
+		return abc.methodTypes[i.asInt()];
 	}
 	public static function getFunction(abc : ABCData, i : Index<MethodType>) {
 		for (f in abc.functions)
-			if (Type.enumEq(f.type, i)) return f;
+			if (f.type.asInt() == i.asInt()) return f;
 		return null;
 	}
 	
 	public static function getNamespaceStr(abc : ABCData, i : Index<Namespace>) : String {
-		switch(i) { case Idx(n): if(n==0) return null; }
+		if(i.asInt() == 0) return null;
 		
 		return switch( getNamespace(abc, i) ) {
 			case NPublic(ns):			getString(abc, ns);
@@ -477,18 +474,18 @@ class AbcUtils {
 		};
 	}
 	
-	private static function mergeInt(dst : ABCData, src : ABCData, i) {
-		if(Type.enumEq(i,Idx(0))) return i;
+	private static function mergeInt(dst : ABCData, src : ABCData, i: Index<haxe.Int32>) {
+		if(i.asInt() == 0) return i;
 		return int(dst, getInt(src, i));
 	}
 	
-	private static function mergeUInt(dst : ABCData, src : ABCData, i) {
-		if(Type.enumEq(i,Idx(0))) return i;
+	private static function mergeUInt(dst : ABCData, src : ABCData, i: Index<haxe.Int32>) {
+		if(i.asInt() == 0) return i;
 		return uint(dst, getUInt(src, i));
 	}
 	
 	private static function mergeFloat(dst : ABCData, src : ABCData, i : Index<Float>) : Index<Float> {
-		if(Type.enumEq(i,Idx(0))) return i;
+		if(i.asInt() == 0) return i;
 		return float(dst, getFloat(src, i));
 	}
 	
@@ -611,7 +608,7 @@ class AbcUtils {
 	}
 	
 	private static function mergeName(dst : ABCData, src : ABCData, i : IName) : IName {
-		if(Type.enumEq(i,Idx(0))) return i;
+		if(i.asInt() == 0) return i;
 		return switch(getName(src,i)) {
 			case NName(n,ns):			name( dst, NName( mergeString(dst,src,n), mergeNamespace(dst,src,ns) ) );
 			case NMulti(n,nsset):		name( dst, NMulti( mergeString(dst,src,n), mergeNamespaceSet(dst,src,nsset) ) );
@@ -625,7 +622,7 @@ class AbcUtils {
 	}
 	
 	private static function mergeNamespace(dst : ABCData, src : ABCData, i : Index<Namespace>) : Index<Namespace> {
-		if(Type.enumEq(i,Idx(0))) return i;
+		if(i.asInt() == 0) return i;
 		return switch(getNamespace(src,i)) {
 			case NPrivate(ns):			namespace( dst, NPrivate(mergeString(dst,src,ns)) );
 			case NNamespace(ns):		namespace( dst, NNamespace(mergeString(dst,src,ns)) );
@@ -638,7 +635,7 @@ class AbcUtils {
 	}
 	
 	private static function mergeNamespaceSet(dst : ABCData, src : ABCData, i : Index<NamespaceSet>) : Index<NamespaceSet> {
-		if(Type.enumEq(i,Idx(0))) return i;
+		if(i.asInt() == 0) return i;
 		var nsset = getNamespaceSet(src,i);
 		var newNsset = new Array();
 		for(ns in nsset) newNsset.push( mergeNamespace(dst,src,ns) );
@@ -646,7 +643,7 @@ class AbcUtils {
 	}
 	
 	private static function mergeString(dst : ABCData, src : ABCData, s : Index<String>) : Index<String> {
-		if(Type.enumEq(s,Idx(0))) return s;
+		if(s.asInt() == 0) return s;
 		return string(dst, getString(src,s));
 	}
 	

@@ -57,7 +57,7 @@ class AS3SoundConnectionMutator extends SoundConnectionMutator {
 					
 					var altered = false;
 					for(j in 0...abc.names.length) {
-						var clName = abc.getNamePath(Idx(j+1));
+						var clName = abc.getNamePath(new Index(j+1));
 						if(clName == "flash.media.Sound") {
 							abc.names[j] = NName( abc.string("__SwivelSound"), abc.namespace(NPublic(abc.string(""))) );
 							altered = true;
