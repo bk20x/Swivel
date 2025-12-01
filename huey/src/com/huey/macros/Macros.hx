@@ -57,7 +57,7 @@ class Macros
 			// transform into property
 			var getterName = "get_" + field.name;
 			var setterName = if (meta.params.length < 2) "set_" + field.name else null;
-			field.kind = FProp("get", if( setterName != null ) setterName else "null", type);
+			field.kind = FProp("get", if( setterName != null ) "set" else "null", type);
 			
 			meta.params = [];
 			

@@ -119,7 +119,7 @@ class Binding {
 					args:	[{name: "v", value: null, type: t, opt: false}]
 				});
 				_cl.addField(setterField);
-				field.kind = FProp("default", setterField.name, t, e);
+				field.kind = FProp("default", "set", t, e);
 
 			case FProp(get, set, t, e):
 				if(set == "default") {
@@ -132,7 +132,7 @@ class Binding {
 						args:	[{name: "v", value: null, type: t, opt: false}]
 					});
 					_cl.addField(setterField);
-					field.kind = FProp(get, setterField.name, t, e);
+					field.kind = FProp(get, "set", t, e);
 				} else {
 					function injectNotify(e : ExprDef) : ExprDef {
 						var retExpr : Expr;

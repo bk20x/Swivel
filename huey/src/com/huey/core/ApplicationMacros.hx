@@ -35,7 +35,7 @@ class ApplicationMacros
 		if(cl.getMeta(":xml") != null) {
 			var xmlPath : String = cl.getMeta(":xml").params[0].extractString();
 			if(xmlPath != null) {
-				xml = new haxe.xml.Fast( Xml.parse(sys.io.File.getContent(xmlPath)).firstElement() );
+				xml = new haxe.xml.Access( Xml.parse(sys.io.File.getContent(xmlPath)).firstElement() );
 				Context.addResource("applicationData", sys.io.File.getBytes(xmlPath));
 			}
 		}

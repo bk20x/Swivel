@@ -136,7 +136,8 @@ class ListBox extends Container {
 		comp.add(labelComp);
 		untyped comp._implComponent.buttonMode = true;
 		untyped comp._implComponent.mouseChildren = false;
-		comp.onClick.add( function(i) {return function(e) selectedIndex = i;}(_items.length) );
+		var makeItemClickFn = function(i) {return function(e) selectedIndex = i;}
+		comp.onClick.add( makeItemClickFn(_items.length) );
 		var str = Std.string(_items.length + 1);
 		if(str.length < 2) str = "0" + str;
 		labelComp = new Label(str);
