@@ -115,7 +115,7 @@ private class BindObject extends Binding.Bindable
 {
 	@bindable public var foo : Int;
 	@bindable public var bar(default, default) : String;
-	@bindable public var baz(getBaz, setBaz) : Float;
+	@bindable public var baz(get, set) : Float;
 	@bindable public var child : BindObject2;
 	@bindable public var array : BindableArray<Int>;
 	
@@ -127,13 +127,13 @@ private class BindObject extends Binding.Bindable
 		setterCalled = false;
 	}
 	
-	private function getBaz()	{ return baz; }
-	private function setBaz(x)	{ setterCalled = true;  return baz = x; }
+	private function get_baz()	{ return baz; }
+	private function set_baz(x)	{ setterCalled = true;  return baz = x; }
 }
 
 private class BindObject2 extends Binding.Bindable
 {
-	public var array(default, set_array) : BindableArray<Int>;
+	public var array(default, set) : BindableArray<Int>;
 	private function set_array(v) {
 		array = v;
 		sum = 0;

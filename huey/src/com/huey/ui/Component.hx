@@ -28,14 +28,14 @@ interface UIBase {
 
 class Component extends Binding.Bindable implements UIBase {
 	public var parent(default, null) : Container;
-	public var root(get_root, null) : Container;
+	public var root(get, null) : Container;
 	private function get_root() {
 		var c = this;
 		while (c.parent != null) c = c.parent;
 		return c.root;
 	}
 	
-	@bindable public var enabled(default, set_enabled) : Bool;
+	@bindable public var enabled(default, set) : Bool;
 	private function set_enabled(v) {
 		if (Std.is(_implComponent, flash.display.InteractiveObject)) {
 			untyped _implComponent.mouseEnabled = v;
@@ -55,14 +55,14 @@ class Component extends Binding.Bindable implements UIBase {
 	
 	@forward(_implComponent) public var alpha : Float;
 	
-	public var depth(default, set_depth) : Float;
+	public var depth(default, set) : Float;
 	private function set_depth(v) {
 		depth = v;
 		//if(parent != null) parent.needDepthSort();
 		return depth;
 	}
 
-	public var hitArea(default, set_hitArea) : HitArea;
+	public var hitArea(default, set) : HitArea;
 	public function set_hitArea(v) {
 		hitArea = v;
 		if(Std.is(_implComponent, flash.display.Sprite))
@@ -83,11 +83,11 @@ class Component extends Binding.Bindable implements UIBase {
 		return hitArea;
 	}
 
-	public var width(get_width, set_width) : Float;
+	public var width(get, set) : Float;
 	private function get_width() return _implComponent.width;
 	private function set_width(v) return _implComponent.width = v;
 	
-	public var height(get_height, set_height) : Float;
+	public var height(get, set) : Float;
 	private function get_height() return _implComponent.height;
 	private function set_height(v) return _implComponent.height = v;
 	

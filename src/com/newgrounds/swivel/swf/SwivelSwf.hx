@@ -40,11 +40,11 @@ class SwivelSwf {
 		return o.getBytes();
 	}
 
-	public var version(get_version, set_version) : Int;
+	public var version(get, set) : Int;
 	inline private function get_version()					{ return _header.version; }
 	inline private function set_version(v)					{ return _header.version = v; }
 	
-	public var avmVersion(default, set_avmVersion) : AVM;
+	public var avmVersion(default, set) : AVM;
 	private function set_avmVersion(v) {
 		if(version < 8 || _fileAttributesIndex < 0) {
 			return avmVersion = v;

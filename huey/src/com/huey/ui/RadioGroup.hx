@@ -30,7 +30,7 @@ class RadioGroup extends com.huey.binding.Binding.Bindable {
 	public var onChange : Dispatcher<Dynamic>;
 	
 	public var items : Array<RadioButton>;
-	@bindable public var selectedItem(default, set_selectedItem) : Null<RadioButton> = null;
+	@bindable public var selectedItem(default, set) : Null<RadioButton> = null;
 	private inline function set_selectedItem(v) {
 		selectedItem = v;
 		onChange.dispatch(null);

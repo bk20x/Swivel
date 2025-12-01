@@ -20,7 +20,7 @@
 package com.huey.ui;
 
 class ScaledImage extends Container {
-	public var scaleMode(default, set_scaleMode) : ScaleMode;
+	public var scaleMode(default, set) : ScaleMode;
 	private function set_scaleMode(v) {
 		scaleMode = v;
 		updateSize();

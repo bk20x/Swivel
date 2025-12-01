@@ -36,10 +36,10 @@ class BindableArray<T> extends Binding.Bindable {
 		dispatchBinding("_array");
 	}
 
-	public var length(get_length, null) : Int;
+	public var length(get, null) : Int;
 	private function get_length() : Int						{ return _array.length; }
 
-	public var array(get_array, never) : Array<T>;
+	public var array(get, never) : Array<T>;
 	public function get_array() : Array<T>					{ return _array; }
 	public function concat(a : Array<T>) : Array<T>			{ return _array.concat(a); }
 	public function copy() : Array<T>						{ return _array.copy(); }

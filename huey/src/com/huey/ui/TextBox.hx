@@ -27,12 +27,12 @@ class TextBox extends Container {
 	@forward(_text) public var color : Int;
 	@forward(_text) public var allowedCharacters : String;
 	
-	public var textX(default, set_textX) : Float;
+	public var textX(default, set) : Float;
 	private function set_textX(v : Float) : Float {
 		return textX = _text.x = v;
 	}
 
-	public var textY(default, set_textY) : Float;
+	public var textY(default, set) : Float;
 	private function set_textY(v : Float) : Float {
 		return textY = _text.y = v;
 	}

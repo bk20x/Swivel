@@ -22,7 +22,7 @@ import com.huey.events.Dispatcher;
 import flash.text.TextFormat;
 
 class Label extends Component {
-	public var text(default, set_text) : String;
+	public var text(default, set) : String;
 	private function set_text(v : String) : String {
 		if (v == null) v = "";
 		text = _implText.text = v;
@@ -31,7 +31,7 @@ class Label extends Component {
 	
 	@forward(_implText) public var wordWrap : Bool;
 	
-	public var color(get_color, set_color) : Int;
+	public var color(get, set) : Int;
 	private function get_color() return _textFormat.color;
 	private function set_color(v) {
 		_textFormat.color = v;
@@ -39,7 +39,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var font(get_font, set_font) : String;
+	public var font(get, set) : String;
 	private function get_font() return _textFormat.font;
 	private function set_font(v) {
 		_textFormat.font = v;
@@ -47,7 +47,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var size(get_size, set_size) : Float;
+	public var size(get, set) : Float;
 	private function get_size() return _textFormat.size;
 	private function set_size(v) {
 		_textFormat.size = v;
@@ -55,7 +55,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var bold(get_bold, set_bold) : Bool;
+	public var bold(get, set) : Bool;
 	private function get_bold() return _textFormat.bold;
 	private function set_bold(v) {
 		_textFormat.bold = v;
@@ -63,7 +63,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var editable(get_editable, set_editable) : Bool;
+	public var editable(get, set) : Bool;
 	private function get_editable() return _implText.type == flash.text.TextFieldType.INPUT;
 	private function set_editable(v) {
 		_implText.selectable = v;
@@ -71,7 +71,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var autoSize(get_autoSize, set_autoSize) : Bool;
+	public var autoSize(get, set) : Bool;
 	private function get_autoSize() return _implText.autoSize != flash.text.TextFieldAutoSize.NONE;
 	private function set_autoSize(v) {
 		_implText.autoSize = if(v) flash.text.TextFieldAutoSize.LEFT else flash.text.TextFieldAutoSize.NONE;
@@ -82,7 +82,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var align(get_align, set_align) : TextAlign;
+	public var align(get, set) : TextAlign;
 	private function get_align() {
 		return switch(_textFormat.align) {
 			case flash.text.TextFormatAlign.LEFT:		TextAlign.left;
@@ -103,7 +103,7 @@ class Label extends Component {
 		return v;
 	}
 	
-	public var letterSpacing(get_letterSpacing, set_letterSpacing) : Float;
+	public var letterSpacing(get, set) : Float;
 	private function get_letterSpacing() return _textFormat.letterSpacing;
 	private function set_letterSpacing(v) {
 		_textFormat.letterSpacing = v;

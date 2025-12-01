@@ -21,7 +21,7 @@ package com.huey.ui;
 import com.huey.events.Dispatcher;
 
 class ListBox extends Container {
-	@bindable public var selectedItem(get_selectedItem, set_selectedItem) : Dynamic;
+	@bindable public var selectedItem(get, set) : Dynamic;
 	private function get_selectedItem() : Dynamic {
 		return if(selectedIndex >= 0) _items[selectedIndex].data else null;
 	}
@@ -40,7 +40,7 @@ class ListBox extends Container {
 	
 	public var onChange(default, null) : Dispatcher<UIEvent>;
 	
-	@bindable public var selectedIndex(default, set_selectedIndex) : Int = -1;
+	@bindable public var selectedIndex(default, set) : Int = -1;
 	private function set_selectedIndex(v : Int) : Int {
 		_selectedRect.visible = false;
 		
