@@ -71,7 +71,7 @@ class ApplicationMacros
 		field = new FieldInfo("BUILD_TIME");
 		field.pos = Context.currentPos();
 		field.access = [AStatic, APublic];
-		field.kind = FVar(null, macro Date.fromTime($v{time}));
+		field.kind = FVar(macro:Date, macro Date.fromTime($v{time}));
 		cl.addField(field);
 		
 		if(cl.getMeta(":version") != null) {
@@ -79,7 +79,7 @@ class ApplicationMacros
 			field.pos = Context.currentPos();
 			field.access = [AStatic, APublic, AInline];
 			var version : String = cl.getMeta(":version").params[0].extractString();
-			field.kind = FVar(null, {expr: EConst(CString(version)), pos: Context.currentPos()});
+			field.kind = FVar(macro:String, {expr: EConst(CString(version)), pos: Context.currentPos()});
 			cl.addField(field);
 		}
 		
@@ -104,7 +104,7 @@ class ApplicationMacros
 		field = new FieldInfo("_app");
 		field.pos = Context.currentPos();
 		field.access = [AStatic, APrivate];
-		field.kind = FVar(null);
+		field.kind = FVar(macro:Application);
 		cl.addField(field);
 		
 		/*field = new FieldInfo("buildUI");
