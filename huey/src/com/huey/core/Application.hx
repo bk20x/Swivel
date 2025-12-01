@@ -272,7 +272,7 @@ class Application extends Binding.Bindable
 				var comps = readUIList(uiData);
 				for (comp in comps) {
 					numericStepper.add(comp);
-					if(Std.is(comp,TextBox)) numericStepper._textBox = cast(comp);
+					if(Std.isOfType(comp,TextBox)) numericStepper._textBox = cast(comp);
 				}
 				if(uiData.hasNode.incButton) numericStepper.incButton = cast(readComponent(uiData.node.incButton.elements.next()));
 				if(uiData.hasNode.decButton) numericStepper.decButton = cast(readComponent(uiData.node.decButton.elements.next()));

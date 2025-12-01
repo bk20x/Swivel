@@ -37,7 +37,7 @@ class Component extends Binding.Bindable implements UIBase {
 	
 	@bindable public var enabled(default, set) : Bool;
 	private function set_enabled(v) {
-		if (Std.is(_implComponent, flash.display.InteractiveObject)) {
+		if (Std.isOfType(_implComponent, flash.display.InteractiveObject)) {
 			untyped _implComponent.mouseEnabled = v;
 			untyped _implComponent.tabEnabled = v;
 			untyped _implComponent.mouseChildren = v;
@@ -65,7 +65,7 @@ class Component extends Binding.Bindable implements UIBase {
 	public var hitArea(default, set) : HitArea;
 	public function set_hitArea(v) {
 		hitArea = v;
-		if(Std.is(_implComponent, flash.display.Sprite))
+		if(Std.isOfType(_implComponent, flash.display.Sprite))
 		{
 			untyped { _implComponent.graphics.clear(); }
 			switch(hitArea) {
