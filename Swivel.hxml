@@ -3,11 +3,11 @@ com.newgrounds.swivel.Swivel
 -cp huey/src
 -cp huey/test
 -cp lib/format
--lib air3
+-lib air4haxe
 -main com.newgrounds.swivel.Swivel
 -swf bin/Swivel.swf
--swf-header 930:590:30
+-D swf-header=930:590:30
 -swf-version 27
 -swf-lib assets/SwivelFonts.swf
 -D air
---flash-strict
+-D flash-strict
