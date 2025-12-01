@@ -56,7 +56,7 @@ class Application extends Binding.Bindable
 		// TODO: pass thru constructor?
 		var applicationData = haxe.Resource.getString("applicationData");
 		if(applicationData != null) {
-			_appXml = new haxe.xml.Fast( Xml.parse(applicationData).firstElement() );
+			_appXml = new haxe.xml.Access( Xml.parse(applicationData).firstElement() );
 		}
 
 		registerAssets();

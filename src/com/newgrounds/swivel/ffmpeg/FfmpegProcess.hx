@@ -47,7 +47,7 @@ class FfmpegProcess
 				var xmlData = flash.desktop.NativeApplication.nativeApplication.applicationDescriptor.toString();
 				xmlData = StringTools.replace(xmlData, "xmlns", "x");
 				var xml = Xml.parse(xmlData).firstElement();
-				var fast = new haxe.xml.Fast( xml );
+				var fast = new haxe.xml.Access( xml );
 				_ffmpegFolder = File.applicationDirectory.resolvePath( fast.node.ffmpegPath.innerData );
 			} catch (e:Dynamic) {
 				_ffmpegFolder = File.applicationDirectory.resolvePath("ffmpeg/win32");
