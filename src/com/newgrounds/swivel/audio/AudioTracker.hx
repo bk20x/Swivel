@@ -21,7 +21,7 @@ package com.newgrounds.swivel.audio;
 
 import com.huey.events.Dispatcher;
 import com.huey.utils.Logger;
-import flash.filesystem.FileStream;
+import openfl.filesystem.FileStream;
 import haxe.Int32;
 import haxe.ds.IntMap;
 import haxe.ds.StringMap;

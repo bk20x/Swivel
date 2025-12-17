@@ -18,9 +18,9 @@
  */
 
 package com.huey.utils;
-import flash.filesystem.File;
-import flash.filesystem.FileMode;
-import flash.filesystem.FileStream;
+import openfl.filesystem.File;
+import openfl.filesystem.FileMode;
+import openfl.filesystem.FileStream;
 import haxe.ds.StringMap;
 import haxe.macro.Expr;
 

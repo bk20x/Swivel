@@ -4,6 +4,7 @@ com.newgrounds.swivel.Swivel
 -cp huey/test
 -cp lib/format
 -lib air4haxe
+-lib openfl
 -main com.newgrounds.swivel.Swivel
 -swf bin/Swivel.swf
 -D swf-header=930:590:30

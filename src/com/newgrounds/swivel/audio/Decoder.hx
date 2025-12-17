@@ -20,9 +20,9 @@
 package com.newgrounds.swivel.audio;
 import com.huey.events.Dispatcher;
 import com.newgrounds.swivel.ffmpeg.FfmpegProcess;
-import flash.filesystem.File;
-import flash.filesystem.FileMode;
-import flash.filesystem.FileStream;
+import openfl.filesystem.File;
+import openfl.filesystem.FileMode;
+import openfl.filesystem.FileStream;
 import flash.utils.ByteArray;
 import haxe.io.Bytes;
 import haxe.io.BytesOutput;
