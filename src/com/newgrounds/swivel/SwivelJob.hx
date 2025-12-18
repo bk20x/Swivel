@@ -21,7 +21,7 @@ package com.newgrounds.swivel;
 import com.huey.binding.Binding;
 import com.newgrounds.swivel.swf.SwivelSwf;
 import com.newgrounds.swivel.swf.RenderQuality;
-import flash.filesystem.File;
+import openfl.filesystem.File;
 
 class SwivelJob extends Binding.Bindable
 {

@@ -26,7 +26,7 @@ import flash.desktop.NativeProcessStartupInfo;
 import flash.events.IOErrorEvent;
 import flash.events.NativeProcessExitEvent;
 import flash.events.ProgressEvent;
-import flash.filesystem.File;
+import openfl.filesystem.File;
 import flash.Lib;
 import flash.utils.ByteArray;
 

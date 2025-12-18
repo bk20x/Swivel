@@ -44,7 +44,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.InvokeEvent;
 import flash.events.MouseEvent;
-import flash.filesystem.File;
+import openfl.filesystem.File;
 import flash.Lib;
 import flash.net.FileFilter;
 import flash.system.Capabilities;
